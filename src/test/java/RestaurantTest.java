@@ -1,16 +1,14 @@
-
 import org.junit.jupiter.api.Test;
 
+import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class RestaurantTest {
     Restaurant restaurant;
@@ -22,7 +20,7 @@ class RestaurantTest {
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
         Restaurant mockedRestaurant = getRestaurant();
-        Mockito.when(LocalTime.now()).thenReturn(LocalTime.of(10,00));
+        Mockito.when(mockedRestaurant.getNow()).thenReturn(LocalTime.of(10,00));
         assertEquals(mockedRestaurant.isRestaurantOpen(),true);
     }
 
@@ -34,7 +32,7 @@ class RestaurantTest {
     @Test
     public void is_restaurant_open_should_return_false_if_time_is_outside_opening_and_closing_time(){
         Restaurant mockedRestaurant = getRestaurant();
-        Mockito.when(LocalTime.now()).thenReturn(LocalTime.of(21,00));
+        Mockito.when(mockedRestaurant.getNow()).thenReturn(LocalTime.of(21,00));
         assertEquals(mockedRestaurant.isRestaurantOpen(),false);
 
     }
